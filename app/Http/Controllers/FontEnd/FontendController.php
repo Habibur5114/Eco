@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategorie;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Artisan;
 class Fontendcontroller extends Controller
 {
 
@@ -79,4 +82,42 @@ class Fontendcontroller extends Controller
     {
         //
     }
+
+
+    public function getProductDetails($id)
+{
+    $product = Product::find($id);
+
+    if ($product) {
+        return response()->json([
+            'id' => $product->id,
+            'name' => $product->name,
+            'regular_price' => $product->regular_price,
+            'sale_price' => $product->sale_price,
+            'image_url' => asset($product->image),
+        ]);
+    }
+
+
+}
+
+
+public function changeLang($lang)
+{
+    $availableLanguages = ['en', 'bn'];
+
+    if (in_array($lang, $availableLanguages)) {
+
+        Session::put('locale', $lang);
+
+
+        app()->setLocale($lang);
+
+        return redirect()->back()->with('success', __('Language changed successfully!'));
+    }
+
+}
+
+
+
 }

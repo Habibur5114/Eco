@@ -26,18 +26,21 @@
   <link href="{{asset('BackEnd/assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
   <link href="{{asset('BackEnd/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
   <link href="{{asset('BackEnd/assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
-  <!-- Summernote CSS -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{{asset('BackEnd/assets/css/style.css')}}" rel="stylesheet">
+
   <style>
     .colored-toast.swal2-icon-success {
   background-color: #a5dc86 !important;
@@ -108,13 +111,9 @@
   <script src="{{asset('BackEnd/assets/vendor/tinymce/tinymce.min.js')}}"></script>
   <script src="{{asset('BackEnd/assets/vendor/php-email-form/validate.js')}}"></script>
 
-  <script>
-    $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-  </script>
+
+
+
   <!-- Template Main JS File -->
   <script src="{{asset('BackEnd/assets/js/main.js')}}"></script>
 
@@ -145,6 +144,12 @@ Swal.fire({
     text: "{{ session('success') }}",
     timer: 1500
   });
+</script>
+
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
 </script>
 
 @endif

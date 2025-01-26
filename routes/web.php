@@ -8,6 +8,7 @@ use App\Http\Controllers\BackEnd\ChildcategoriesController;
 use App\Http\Controllers\BackEnd\ProductController;
 use App\Http\Controllers\BackEnd\GeneralController;
 use App\Http\Controllers\BackEnd\ContactController;
+use App\Http\Controllers\BackEnd\ShippingController;
 use App\Http\Controllers\FontEnd\Fontendcontroller;
 use App\Http\Controllers\FontEnd\CartController;
 use App\Http\Middleware\admin;
@@ -47,6 +48,7 @@ Route::post('/subcategory/update', [SubcategorieController::class, 'update'])->n
 Route::get('/subcategory/status/{id}', [SubcategorieController::class, 'status'])->name('subcategory.status');
 
 
+
 // childcategories
 Route::get('/childcategory', [ChildcategoriesController::class, 'index'])->name('childcategory.index');
 Route::get('/childcategory/create', [ChildCategoriesController::class, 'create'])->name('childcategory.create');
@@ -75,6 +77,7 @@ Route::get('/get-childcategories', [ProductController::class, 'getChildCategorie
 
 Route::get('/',[Fontendcontroller::class, 'index'])->name('Fontend.index');
 Route::get('/category-wise/{slug}',[Fontendcontroller::class, 'categorywise'])->name('Fontend.categorywise');
+Route::get('/product/{id}', [Fontendcontroller::class, 'getProductDetails'])->name('product.details');
 
 //card
 
@@ -100,3 +103,17 @@ Route::post('/admin/contact/update', [ContactController::class, 'update'])->name
 Route::get('/admin/contact/delete/{id}', [ContactController::class, 'destroy'])->name('contact.delete');
 Route::get('/admin/contact/status/{id}', [ContactController::class, 'status'])->name('contact.status');
 
+
+
+
+// shipping
+Route::get('/admin/shipping', [ShippingController::class, 'index'])->name('shipping.index');
+Route::get('/admin/shipping/create', [ShippingController::class, 'create'])->name('shipping.create');
+Route::post('/admin/shipping/save', [ShippingController::class, 'store'])->name('shipping.store');
+Route::get('/admin/shipping/edit/{id}', [ShippingController::class, 'edit'])->name('shipping.edit');
+Route::post('/admin/shipping/update', [ShippingController::class, 'update'])->name('shipping.update');
+Route::get('/admin/shipping/destroy/{id}', [ShippingController::class, 'destroy'])->name('shipping.destroy');
+Route::get('/admin/shipping/status/{id}', [ShippingController::class, 'status'])->name('shipping.status');
+
+
+Route::get('/change-lang/{lang}', [Fontendcontroller::class, 'changeLang'])->name('change-lang');

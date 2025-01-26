@@ -1,18 +1,16 @@
 <?php
 namespace App\Http\Controllers\BackEnd;
-namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
 
 class ShippingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-     $shippings = Shipping::all();
-      return view('BackEnd.setting.setting.manage',compact('shippings'));
+        $data['shippings'] = Shipping::all();
+        return view('BackEnd.setting.shipping.index', $data);
     }
 
     /**
@@ -21,7 +19,8 @@ class ShippingController extends Controller
     public function create()
     {
 
-        return view('BackEnd.setting.setting.indext',);
+
+        return view('BackEnd.setting.shipping.form');
     }
 
     /**
@@ -29,13 +28,14 @@ class ShippingController extends Controller
      */
     public function store(Request $request)
     {
-        $shippings = new Shipping();
-        $shippings->name = $request->name;
-        $shippings->amount = $request->amount;
-        $shippings->status = $request->status;
+
+        $shipping = new Shipping();
+        $shipping->name = $request->name;
+        $shipping->status = $request->status;
         $shipping->save();
 
-        return redirect()->route('shipping.index')->with('success', 'shipping created successfully.');
+      return redirect()->route('shipping.index')->with('success','Shipping Charge added successfull');
+
     }
 
     /**
@@ -43,30 +43,57 @@ class ShippingController extends Controller
      */
     public function show()
     {
-        
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Shipping $shipping)
+    public function edit($id)
     {
-        //
+       $shippings = Shipping::find($id);
+
+        return view('BackEnd.setting.shipping.form', compact('shippings'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Shipping $shipping)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        $shipping = Shipping:: find($request->id);
+        $shipping->name = $request->name;
+        $shipping->status = $request->status;
+        $shipping->save();
+
+      return redirect()->route('shipping.index')->with('success','Shipping Charge Update successfull');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Shipping $shipping)
+    public function destroy($id)
     {
-        //
+       $shipping = Shipping:: find($id);
+       $shipping->delete();
+       return redirect()->back()->with('success', ' Delete successfully');
     }
+
+    public function  status($id){
+
+        $shipping = Shipping::find($id);
+        if($shipping->status == 1){
+            $shipping->status = 0 ;
+        }else{
+            $shipping->status = 1;
+        }
+        $shipping->update();
+        return redirect()->back()->with('success', ' Status changed successfully');
+    }
+
+
+
+
 }

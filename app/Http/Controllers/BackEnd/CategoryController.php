@@ -21,7 +21,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
         return view('BackEnd.categories.index');
     }
 
