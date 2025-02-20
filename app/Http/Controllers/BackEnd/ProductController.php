@@ -4,10 +4,13 @@ namespace App\Http\Controllers\BackEnd;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Subcategorie;
+use App\Models\Brand;
 use App\Models\Childcategories;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
@@ -26,7 +29,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('BackEnd.product.index',compact('categories'));
+        $brands = Brand::all();
+        return view('BackEnd.product.index',compact('categories','brands'));
     }
 
 
@@ -45,7 +49,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
+    
+ 
         $request->validate([
             'name' => 'required',
             'categories_id' => 'required',
@@ -64,12 +69,17 @@ class ProductController extends Controller
         $product->categories_id = $request->categories_id;
         $product->subcategories_id = $request->subcategories_id;
         $product->childcategories_id = $request->childcategories_id;
+        $product->brands_id = $request->brands_id;
         $product->regular_price = $request->regular_price;
         $product->sale_price = $request->sale_price;
         $product->quantity = $request->quantity;
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;
         $product->status = $request->status;
+        $product->quantity = $request->quantity;
+        $product->sku = $request->sku;
+        $product->featured = $request->featured;
+        $product->stock_status = $request->stock_status;
         if( $request->hasFile('image') ){
             $image = $request->file('image');
             $imageName          = microtime('.') . '.' . $image->getClientOriginalExtension();
@@ -78,6 +88,34 @@ class ProductController extends Controller
 
             $product->image   = $imagePath . $imageName;
         }
+
+        if ($request->hasFile('gallery_image')) {
+            $galleryImages = json_decode($product->gallery_image, true) ?? []; // Decode existing images or initialize an array
+        
+            foreach ($request->file('gallery_image') as $image) {
+                // Generate a unique image name
+                $imageName = microtime(true) . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $imagePath = 'storage/imagess/';
+        
+                // Ensure directory exists
+                if (!file_exists(public_path($imagePath))) {
+                    mkdir(public_path($imagePath), 0777, true);
+                }
+        
+                // Move the image to the specified directory
+                $image->move(public_path($imagePath), $imageName);
+        
+                // Append new image path
+                $galleryImages[] = $imagePath . $imageName;
+            }
+        
+            // Save updated images as JSON
+            $product->gallery_image = json_encode($galleryImages);
+            
+        }
+        
+        
+
        $product->save();
 
    return redirect()->route('product.index')->with('success', 'Product created successfully.');
@@ -93,46 +131,7 @@ class ProductController extends Controller
         return view('BackEnd.product.edit', compact('product','categories'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(Request $request,)
-    // {
-
-
-    //     $id=$request->id;
-    //     $subcategory   =  Product::find($request->id);
-    //     $product->name = $request->name;
-    //     $product->slug = Str::slug($request->name);
-    //     $product->categories_id = $request->categories_id;
-    //     $product->subcategories_id = $request->subcategories_id;
-    //     $product->childcategories_id = $request->childcategories_id;
-    //     $product->regular_price = $request->regular_price;
-    //     $product->sale_price = $request->sale_price;
-    //     $product->quantity = $request->quantity;
-    //     $product->meta_title = $request->meta_title;
-    //     $product->meta_description = $request->meta_description;
-    //     $product->status = $request->status;
-    //     if( $request->hasFile('image') ){
-    //         $image = $request->file('image');
-    //         $imageName          = microtime('.') . '.' . $image->getClientOriginalExtension();
-    //         $imagePath          = 'storage/images/';
-    //         $image->move($imagePath, $imageName);
-
-    //         $product->image   = $imagePath . $imageName;
-    //     }
-    //    $product->update();
-
-    //    return redirect()->route('product.index')->with('success', 'Product update successfully.');
-
-    // }
-
-
-
+   
 
     public function update(Request $request)
     {

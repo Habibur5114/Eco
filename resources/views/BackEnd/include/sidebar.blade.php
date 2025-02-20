@@ -67,6 +67,54 @@
   </li>
 
 
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#components-navi" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-people-fill"></i><span>Brand</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <hr>
+    <ul id="components-navi" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <li>
+    <a href="{{route('brand.index')}}">
+        <i class="bi bi-person-add" style="font-size: 18px;"></i>
+        <span>Brand</span>
+    </a>
+    <hr>
+   </li>
+ </ul>
+  </li>
+
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#components-navvv" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-people-fill"></i><span>Coupon</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <hr>
+    <ul id="components-navvv" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <li>
+    <a href="{{route('coupon.index')}}">
+        <i class="bi bi-person-add" style="font-size: 18px;"></i>
+        <span>Coupon</span>
+    </a>
+    <hr>
+   </li>
+ </ul>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#components-navvve" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-people-fill"></i><span>Slide</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <hr>
+    <ul id="components-navvve" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <li>
+    <a href="{{route('slide.index')}}">
+        <i class="bi bi-person-add" style="font-size: 18px;"></i>
+        <span>Slide</span>
+    </a>
+    <hr>
+   </li>
+ </ul>
+  </li>
 
 
   <li class="nav-item">

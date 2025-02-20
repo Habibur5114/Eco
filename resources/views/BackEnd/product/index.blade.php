@@ -21,7 +21,6 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="category_id" class="m-3">Category*</label>
-
                             <select  class="form-select form-control"  id="category" name="categories_id" >
                                 <option>Select Category</option>
                                 @foreach ($categories as $category)
@@ -34,7 +33,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-
                         <div class="form-group">
                             <label for="" class="m-3">SubCategories(optional)</label>
                             <select  class="form-select form-control" id="subcategory" name="subcategories_id">
@@ -49,6 +47,24 @@
                             <select class="form-select form-control" id="childcategory" name="childcategories_id" >
                                 <option value="">Select Child-Categories</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="category_id" class="m-3">Brand</label>
+                            <select class="form-select form-control" id="brand" name="brands_id" >
+                                <option value="">Select Brand</option>
+                                @foreach ($brands as $brand)
+                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="category_id" class="m-3">SKU</label>
+                            <input type="text" name="sku" class="form-control" placeholder="sku">
                         </div>
                     </div>
                 </div>
@@ -74,10 +90,35 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="category_id " class="m-3">Quantity *</label>
-                            <input type="number" id="name" class="form-control" name="quantity" placeholder="Quantity"value="{{old('quantity')}}" >
+                            <input type="text" id="name" class="form-control" name="quantity" placeholder="Quantity"value="{{old('quantity')}}" >
                             <span class="input alert-danger">@error('quantity'){{$message}}@enderror</span>
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name" class="m-3">Stock</label>
+                            <div class="select flex-grow">
+                                <select class=" form-control" name="stock_status">
+                                    <option value="instock" >inStock</option>
+                                    <option value="out of stock">Out Of Stock</option>
+                                </select>
+                            </div>   
+                        </div>
+                    </div>
+        
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name" class="m-3">Featured</label>
+                            <div class="select flex-grow">
+                                <select class=" form-control" name="featured">             
+                                    <option value="yes" >Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>   
+                        </div>
+                    </div>
+        
 
                     <div class="col-md-6">
                         <div class="form-group">
@@ -108,6 +149,15 @@
                 </div>
             </div>
 
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="gallery_image" class="m-3">Gallery Image*</label>
+                    <input type="file" class="form-control" name="gallery_image[]" multiple />
+                </div>
+            </div>
+            
+
+
             <div class="col-md-1">
                 <div class="form-group">
                     <label class="m-3 mt-4">Status</label><br>
@@ -117,6 +167,10 @@
                     </label>
                 </div>
             </div>
+
+            
+
+
 
              </div>
 

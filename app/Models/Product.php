@@ -20,6 +20,10 @@ class Product extends Model
     {
         return $this->belongsTo('childcategory::class','childcategories_id');
     }
+    public function brand()
+    {
+        return $this->belongsTo('brand::class','brands_id');
+    }
 
 
 }

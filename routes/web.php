@@ -6,11 +6,16 @@ use App\Http\Controllers\BackEnd\CategoryController;
 use App\Http\Controllers\BackEnd\SubcategorieController;
 use App\Http\Controllers\BackEnd\ChildcategoriesController;
 use App\Http\Controllers\BackEnd\ProductController;
+use App\Http\Controllers\BackEnd\BrandController;
+use App\Http\Controllers\BackEnd\CouponController;
+use App\Http\Controllers\BackEnd\SliderController;
 use App\Http\Controllers\BackEnd\GeneralController;
 use App\Http\Controllers\BackEnd\ContactController;
 use App\Http\Controllers\BackEnd\ShippingController;
 use App\Http\Controllers\FontEnd\Fontendcontroller;
 use App\Http\Controllers\FontEnd\CartController;
+use App\Http\Controllers\website\WebsiteController;
+use App\Http\Controllers\website\ShopController;
 use App\Http\Middleware\admin;
 
 
@@ -72,6 +77,42 @@ Route::get('/get-childcategories', [ProductController::class, 'getChildCategorie
 
 
 
+//brand
+
+Route::prefix('admin')->name('brand.')->group(function () {
+    Route::get('/brand', [BrandController::class, 'index'])->name('index');
+    Route::get('/brand/create', [BrandController::class, 'create'])->name('create'); 
+    Route::post('/brand/store', [BrandController::class, 'store'])->name('store'); 
+    Route::post('/brand/update', [BrandController::class, 'update'])->name('update'); 
+    Route::get('/brand/show/{id}', [BrandController::class, 'show'])->name('show'); 
+    Route::get('/brand/delete/{id}', [BrandController::class, 'delete'])->name('delete'); 
+    Route::get('/brand/status/{id}', [BrandController::class, 'status'])->name('status'); 
+});
+
+//coupon
+
+Route::prefix('admin')->name('coupon.')->group(function () {
+    Route::get('/coupon', [CouponController::class, 'index'])->name('index');
+    Route::get('/coupon/create', [CouponController::class, 'create'])->name('create');
+    Route::post('/coupon/store', [CouponController::class, 'store'])->name('store');
+    Route::post('/coupon/update', [CouponController::class, 'update'])->name('update');
+    Route::get('/coupon/show/{id}', [CouponController::class, 'show'])->name('show');
+    Route::get('/coupon/delete/{id}', [CouponController::class, 'delete'])->name('delete');
+    Route::get('/coupon/status/{id}', [CouponController::class, 'status'])->name('status');
+});
+
+//slide
+
+Route::prefix('admin')->name('slide.')->group(function () {
+    Route::get('/slide', [SliderController::class, 'index'])->name('index');
+    Route::get('/slide/create', [SliderController::class, 'create'])->name('create');
+    Route::post('/slide/store', [SliderController::class, 'store'])->name('store');
+    Route::post('/slide/update', [SliderController::class, 'update'])->name('update');
+    Route::get('/slide/show/{id}', [SliderController::class, 'show'])->name('show');
+    Route::get('/slide/delete/{id}', [SliderController::class, 'delete'])->name('delete');
+    Route::get('/slide/status/{id}', [SliderController::class, 'status'])->name('status');
+});
+
 
 // frontEnd
 
@@ -117,3 +158,18 @@ Route::get('/admin/shipping/status/{id}', [ShippingController::class, 'status'])
 
 
 Route::get('/change-lang/{lang}', [Fontendcontroller::class, 'changeLang'])->name('change-lang');
+
+
+// website
+Route::prefix('website')->name('website.')->group(function () {
+    Route::get('/', [WebsiteController::class, 'index'])->name('index');
+    Route::get('/details/{slug}', [WebsiteController::class, 'details'])->name('details');
+   
+});
+
+//websiteshop
+
+Route::prefix('website')->name('shop.')->group(function () {
+    Route::get('/shop', [ShopController::class, 'index'])->name('index');
+   
+});
