@@ -13,8 +13,7 @@ return new class extends Migration
 {
     Schema::create('coupons', function (Blueprint $table) {
         $table->id();
-        $table->string('name')->nullable();
-        $table->string('slug');
+        $table->string('coupon_code')->nullable();
         $table->enum('type', ['percentage', 'fixed'])->nullable(); 
         $table->decimal('value', 10, 2)->nullable(); 
         $table->decimal('card_value', 10, 2)->nullable(); 

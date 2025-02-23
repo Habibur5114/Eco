@@ -31,8 +31,8 @@ class CouponController extends Controller
 
         // Create and save the coupon
         $coupon = new Coupon();
-        $coupon->name = $request->name;
-        $coupon->slug = Str::slug($request->name);
+        $coupon->coupon_code= $request->coupon_code;
+   
         $coupon->type = $request->type;
         $coupon->value = $request->value;
         $coupon->card_value = $request->card_value;
@@ -47,8 +47,7 @@ class CouponController extends Controller
     {
         $id = $request->id;
         $coupon = Coupon::find($request->id);
-        $coupon->name = $request->name;
-        $coupon->slug = Str::slug($request->name);
+        $coupon->coupon_code = $request->coupon_code;
         $coupon->type = $request->type;
         $coupon->value = $request->value;
         $coupon->card_value = $request->card_value;

@@ -20,6 +20,7 @@
                     <tr>
                       <th>No</th>
                       <th>Area-Name</th>
+                      <th>Charge</th>
                       <th>status</th>
                       <th>Action</th>
                     </tr>
@@ -31,6 +32,7 @@
                     <tr>
                       <td>{{++$key}}</td>
                       <td>{{$shipping->name}}</td>
+                      <td>{{$shipping->charge}}</td>
 
                       <td>
                        @if ($shipping->status == 1)

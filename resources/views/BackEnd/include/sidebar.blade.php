@@ -24,8 +24,22 @@
     <hr>
    </li>
  </ul>
-  </li>
 
+  </li>
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#components" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-people-fill"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <hr>
+    <ul id="components" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <li>
+    <a href="{{route('order.show')}}">
+        <i class="bi bi-person-add" style="font-size: 18px;"></i>
+        <span>Order</span>
+    </a>
+    <hr>
+   </li>
+  </ul>
 
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#components-navv" data-bs-toggle="collapse" href="#">
@@ -97,6 +111,10 @@
     </a>
     <hr>
    </li>
+
+  
+
+
  </ul>
   </li>
 
@@ -132,13 +150,14 @@
         <i class="bi bi-credit-card-2-back" style="font-size: 18px;"></i>
         <span>Contact</span>
     </a>
+    <a href="{{route('shipping.index')}}">
+        <i class="bi bi-credit-card-2-back" style="font-size: 18px;"></i>
+        <span>Shipping</span>
+    </a>
     <hr>
    </li>
  </ul>
   </li>
-
-
-
 </ul>
 
 </aside>

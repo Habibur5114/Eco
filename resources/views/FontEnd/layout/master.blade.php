@@ -125,7 +125,7 @@ nav ul li:hover ul {
                     <form class="d-flex ms-auto">
                         <a href="{{ route('carts') }}" class="text-black text-decoration-none">
                             <i class="bi-cart-fill me-1"></i>
-                            {{ Cart::getTotalQuantity() }}
+                            {{-- {{ Cart::getTotalQuantity() }} --}}
                         </a>
                     </form>
 

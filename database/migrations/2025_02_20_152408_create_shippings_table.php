@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('status');
+            $table->unsignedDecimal('charge', 10, 2);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

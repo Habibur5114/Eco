@@ -16,6 +16,12 @@
                         <input type="text"  class="form-control" name="name" placeholder="Name" value="@isset($shippings){{$shippings->name}}@endisset" >
                         <input type="hidden" name="id" value="@isset($shippings){{$shippings->id}}@endisset">
                     </div>
+
+                    <div class="form-group">
+                        <label for="name" class="m-3">Charge</label>
+                        <input type="text"  class="form-control" name="charge" placeholder="Shipping Charge" value="@isset($shippings){{$shippings->charge}}@endisset" >
+                       
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="m-3 ">Status</label><br>

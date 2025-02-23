@@ -31,6 +31,7 @@ class ShippingController extends Controller
 
         $shipping = new Shipping();
         $shipping->name = $request->name;
+        $shipping->charge = $request->charge;
         $shipping->status = $request->status;
         $shipping->save();
 
@@ -65,6 +66,7 @@ class ShippingController extends Controller
         $id = $request->id;
         $shipping = Shipping:: find($request->id);
         $shipping->name = $request->name;
+        $shipping->charge = $request->charge;
         $shipping->status = $request->status;
         $shipping->save();
 

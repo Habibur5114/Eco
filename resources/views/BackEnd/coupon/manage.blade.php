@@ -30,7 +30,7 @@
      
                     <tr>
                       <td>{{++$key}}</td>
-                      <td>{{$coupon->name}}</td>
+                      <td>{{$coupon->coupon_code}}</td>
                       <td>{{$coupon->type}}</td>
                       <td>{{$coupon->expiry_date}}</td>
                       <td>

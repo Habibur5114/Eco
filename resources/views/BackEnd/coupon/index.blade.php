@@ -18,7 +18,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name" class="m-3">Coupon Name</label>
-                                <input type="text" id="name" class="form-control" name="name" value="@isset($coupon){{$coupon->name}}    
+                                <input type="text" id="name" class="form-control" name="coupon_code" value="@isset($coupon){{$coupon->name}}    
                                 @endisset" placeholder="Name"> 
                                  <input type="hidden" name="id" value="@isset($coupon)
                                      {{$coupon->id}}

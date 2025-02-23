@@ -144,16 +144,16 @@
 
 
                                     <ul class="multi-select__list list-unstyled">
-                                      @foreach ($brands as $brand)
-                                          <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" name="brand[]"
-                                                  value="{{ $brand->id }}" id="brand{{ $brand->id }}"
-                                                  {{ request()->has('brand') && in_array($brand->slug, request()->input('brand')) ? 'checked' : '' }}
-                                                  onchange="shopFilter()">
-                                              <label class="form-check-label"
-                                                  for="brand{{ $brand->id }}">{{ $brand->name }}</label>
-                                          </div>
-                                       @endforeach
+                                        @foreach ($brands as $brand)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="brand[]"
+                                                    value="{{ $brand->id }}" id="brand{{ $brand->id }}"
+                                                    {{ request()->has('brand') && in_array($brand->slug, request()->input('brand')) ? 'checked' : '' }}
+                                                    onchange="shopFilter()">
+                                                <label class="form-check-label"
+                                                    for="brand{{ $brand->id }}">{{ $brand->name }}</label>
+                                            </div>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -307,17 +307,19 @@
                                         data-settings='{"resizeObserver": true}'>
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide">
-                                                <a href="{{route('website.details',$product->slug)}}"><img loading="lazy"
-                                                        src="{{ asset($product->image) }}" width="330" height="400"
-                                                        alt="Cropped Faux leather Jacket" class="pc__img"></a>
+                                                <a href="{{ route('website.details', $product->slug) }}"><img
+                                                        loading="lazy" src="{{ asset($product->image) }}" width="330"
+                                                        height="400" alt="Cropped Faux leather Jacket"
+                                                        class="pc__img"></a>
                                             </div>
-                                            
-                                 
+
+
                                         </div>
                                     </div>
-                                    <button
-                                        class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside"
-                                        data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                                 
+                                    
+                              
+                                        
                                 </div>
 
                                 <div class="pc__info position-relative">
@@ -326,9 +328,16 @@
                                         <span class="money price price-old">{{ $product->regular_price }}</span>
                                         <span class="money price price-sale">{{ $product->sale_price }}</span>
 
-                                        
-                                      
                                     </div>
+
+                                  
+                                    <form action="{{ route('websiteCart.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id ?? '' }}">
+                                        <button type="submit" class="btn btn-success form-control">Add To Cart</button>
+                                    </form>
+                                    
+                                 
 
                                     <button
                                         class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist"
@@ -359,7 +368,5 @@
                 $('#filterform').submit();
             });
         });
-
-      
     </script>
 @endsection

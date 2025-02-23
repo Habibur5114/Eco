@@ -12,10 +12,12 @@ use App\Http\Controllers\BackEnd\SliderController;
 use App\Http\Controllers\BackEnd\GeneralController;
 use App\Http\Controllers\BackEnd\ContactController;
 use App\Http\Controllers\BackEnd\ShippingController;
+use App\Http\Controllers\BackEnd\OrderController;
 use App\Http\Controllers\FontEnd\Fontendcontroller;
 use App\Http\Controllers\FontEnd\CartController;
 use App\Http\Controllers\website\WebsiteController;
 use App\Http\Controllers\website\ShopController;
+use App\Http\Controllers\website\shopingCartController;
 use App\Http\Middleware\admin;
 
 
@@ -162,7 +164,7 @@ Route::get('/change-lang/{lang}', [Fontendcontroller::class, 'changeLang'])->nam
 
 // website
 Route::prefix('website')->name('website.')->group(function () {
-    Route::get('/', [WebsiteController::class, 'index'])->name('index');
+    Route::get('/website', [WebsiteController::class, 'index'])->name('index');
     Route::get('/details/{slug}', [WebsiteController::class, 'details'])->name('details');
    
 });
@@ -173,3 +175,20 @@ Route::prefix('website')->name('shop.')->group(function () {
     Route::get('/shop', [ShopController::class, 'index'])->name('index');
    
 });
+
+//shopingCartController
+
+Route::prefix('website')->name('websiteCart.')->group(function () {
+    Route::get('/cart', [shopingCartController::class, 'index'])->name('index');
+    Route::post('/store', [shopingCartController::class, 'store'])->name('store');
+    Route::PATCH('/update/{id}', [shopingCartController::class, 'update'])->name('update');
+    Route::get('/delete/{id}', [shopingCartController::class, 'delete'])->name('delete');
+   
+
+});
+
+//order 
+Route::get('/checkout', [OrderController::class, 'index'])->name('checkout');
+Route::get('/order/show', [OrderController::class, 'show'])->name('order.show');
+Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
+
