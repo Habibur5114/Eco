@@ -115,8 +115,6 @@
                         </td>
                     </tr>
 
-
-                    
                     @php
                     $subtotal = Cart::getSubTotal();
                     $vat = $subtotal * 0.05;
@@ -134,16 +132,15 @@
                 </tr>
 
                 <tr>
-                    <th>Total</th>
-                    <td><span id="total">৳{{ number_format($total, 2) }}</span></td>
-                </tr>
-                 
+                  <th>Total</th>
+                  <input type="hidden" name="total" id="total-input" value="{{ number_format($total, 2, '.', '') }}">
+                  <td><span id="total">৳{{ number_format($total, 2) }}</span></td>
+                 </tr>
+                
                   </tbody>
                 </table>
               </div>
               <input type="submit" class="btn btn-primary btn-checkout" value="Place Order">
-
-          
             </form>
             </div>
           </div>
@@ -179,3 +176,7 @@
         });
     });
 </script>
+
+
+
+

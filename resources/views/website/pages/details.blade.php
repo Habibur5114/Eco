@@ -117,6 +117,10 @@
         <div class="product-single__price">
           <span class="current-price">$449</span>
         </div>
+
+        <div class="product-single__price">
+          <span class="current-price">Color:</span>
+        </div>
         <div class="product-single__short-desc">
           <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam
             varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere
@@ -248,7 +252,7 @@
             </div>
             <div class="item">
               <label class="h6">Size</label>
-              <span>XS, S, M, L, XL</span>
+              <span>{!! $product->size !!}</span>
             </div>
             <div class="item">
               <label class="h6">Color</label>

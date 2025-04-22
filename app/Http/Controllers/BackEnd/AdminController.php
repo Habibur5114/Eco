@@ -4,15 +4,22 @@ namespace App\Http\Controllers\BackEnd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Product;
 use App\Models\user;
+use App\Models\order;
+use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
     public function index(){
-        return view('BackEnd.page.dashboard');
+        $totalProducts = Product::count(); 
+        $todayOrders = Order::whereDate('created_at', Carbon::today())->count();
+        $totalOrders = Order::count();
+        return view('BackEnd.page.dashboard', compact('totalProducts','todayOrders','totalOrders'));
     }
+
     public function user(){
         $users = User::orderBy('id', 'desc')->get();
         return view('BackEnd.Auth.user',compact('users'));

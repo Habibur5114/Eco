@@ -24,6 +24,14 @@ class Product extends Model
     {
         return $this->belongsTo('brand::class','brands_id');
     }
+    public function size()
+    {
+        return $this->belongsTo('Size::class','sizes_id');
+    }
+    public function color()
+    {
+        return $this->belongsTo('Color::class','colors_id');
+    }
 
 
 }

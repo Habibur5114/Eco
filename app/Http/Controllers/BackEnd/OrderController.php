@@ -30,6 +30,7 @@ class OrderController extends Controller
     $order->date = Carbon::now()->subDays(rand(1, 365))->format('Y-m-d'); 
     $order->phone = $request->phone;
     $order->address = $request->address;
+    $order->total = $request->total;
     $order->status = 'pending';
     $order->save();
 

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('subcategories_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('childcategories_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('brands_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('sizes_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('color_id')->nullable()->constrained()->nullOnDelete();
             $table->decimal('regular_price', 8, 2)->nullable();
             $table->decimal('sale_price', 8, 2)->nullable();
             $table->integer('quantity')->nullable();

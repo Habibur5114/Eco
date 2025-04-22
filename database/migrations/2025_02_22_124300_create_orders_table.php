@@ -17,6 +17,7 @@ return new class extends Migration
         $table->date('date'); 
         $table->string('phone');
         $table->text('address'); 
+        $table->integer('total');
         $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending'); 
         $table->timestamps();
 

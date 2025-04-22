@@ -154,6 +154,14 @@
         <i class="bi bi-credit-card-2-back" style="font-size: 18px;"></i>
         <span>Shipping</span>
     </a>
+    <a href="{{route('size.index')}}">
+        <i class="bi bi-credit-card-2-back" style="font-size: 18px;"></i>
+        <span>Size</span>
+    </a>
+    <a href="{{route('color.index')}}">
+        <i class="bi bi-credit-card-2-back" style="font-size: 18px;"></i>
+        <span>Color</span>
+    </a>
     <hr>
    </li>
  </ul>

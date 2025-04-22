@@ -7,6 +7,8 @@ use App\Models\Subcategorie;
 use App\Models\Brand;
 use App\Models\Childcategories;
 use App\Models\Category;
+use App\Models\Size;
+use App\Models\color;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +32,9 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('BackEnd.product.index',compact('categories','brands'));
+        $sizes = Size::all();
+        $colors = color::all();
+        return view('BackEnd.product.index',compact('categories','brands','sizes','colors'));
     }
 
 
@@ -50,7 +54,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
     
- 
+
         $request->validate([
             'name' => 'required',
             'categories_id' => 'required',
@@ -67,6 +71,8 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
         $product->categories_id = $request->categories_id;
+        $product->size = json_encode($request->size);
+        $product->color = json_encode($request->color);
         $product->subcategories_id = $request->subcategories_id;
         $product->childcategories_id = $request->childcategories_id;
         $product->brands_id = $request->brands_id;

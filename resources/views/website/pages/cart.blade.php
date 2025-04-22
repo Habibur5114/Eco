@@ -109,20 +109,16 @@
                         </tbody>
                     </table>
                     <div class="cart-table-footer" >
-                        <form id="coupon-form"  class="position-relative bg-body">
-                            @csrf
-                            <input class="form-control" type="text" name="coupon_code" id="coupon_code" placeholder="Coupon Code" required>
-                            <button type="submit" class="btn btn-primary fw-medium position-absolute top-0 end-0 h-100 px-4" onclick="applyCoupon(event)">
+                        <form  method="POST" id="coupon-form"  class="position-relative bg-body">
+                       
+                            <input class="form-control" type="text" name="coupon_code"  id="coupon_code" placeholder="Coupon Code" required>
+                            <button type="submit" class="btn btn-primary fw-medium position-absolute top-0 end-0 h-100 px-4" >
                                 APPLY COUPON
                             </button>
                         </form>
-                       
-                        
-                        
-                   
 
-                       
 
+                      
                     </div>
                 </div>
                 <div class="shopping-cart__totals-wrapper">
@@ -174,11 +170,20 @@
                                     </tr>
 
                                     <tr>
-                                        <th>Total</th>
-                                        <td><span id="total">৳{{ number_format($total, 2) }}</span></td>
+                                        <th>Discount</th>
+                                        <td><span id="discount">৳{{ session('coupon.discount') ?? '0.00' }}</span></td>
                                     </tr>
 
+                                    {{-- <tr>
+                                        <th>Total</th>
+                                        <td><span id="total">৳{{ number_format($total, 2) }}</span></td>
+                                    </tr> --}}
 
+                                    <tr>
+                                        <th>Total</th>
+                                        <td><span id="total">৳{{ session('coupon.total') ?? number_format($total, 2) }}</span></td>
+                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -221,4 +226,3 @@
 </script>
 
 {{-- coupon --}}
-

@@ -7,11 +7,15 @@ use App\Http\Controllers\BackEnd\SubcategorieController;
 use App\Http\Controllers\BackEnd\ChildcategoriesController;
 use App\Http\Controllers\BackEnd\ProductController;
 use App\Http\Controllers\BackEnd\BrandController;
+use App\Http\Controllers\BackEnd\BkashController;
+use App\Http\Controllers\BkashTokenizePaymentController;
 use App\Http\Controllers\BackEnd\CouponController;
 use App\Http\Controllers\BackEnd\SliderController;
 use App\Http\Controllers\BackEnd\GeneralController;
 use App\Http\Controllers\BackEnd\ContactController;
 use App\Http\Controllers\BackEnd\ShippingController;
+use App\Http\Controllers\BackEnd\SizeController;
+use App\Http\Controllers\BackEnd\ColorController;
 use App\Http\Controllers\BackEnd\OrderController;
 use App\Http\Controllers\FontEnd\Fontendcontroller;
 use App\Http\Controllers\FontEnd\CartController;
@@ -136,6 +140,10 @@ Route::get('/admin/general/show/{id}',[GeneralController ::class, 'show'])->name
 Route::get('/admin/general/status/{id}',[GeneralController ::class, 'status'])->name('general.status');
 
 
+//bkash
+Route::get('bkash',[BkashController ::class, 'index'])->name('bkash.index');
+
+
 //contact
 
 Route::get('/admin/contact', [ContactController::class, 'index'])->name('contact.index');
@@ -146,7 +154,17 @@ Route::post('/admin/contact/update', [ContactController::class, 'update'])->name
 Route::get('/admin/contact/delete/{id}', [ContactController::class, 'destroy'])->name('contact.delete');
 Route::get('/admin/contact/status/{id}', [ContactController::class, 'status'])->name('contact.status');
 
+//size
+Route::get('/admin/size', [SizeController::class, 'index'])->name('size.index');
+Route::get('/admin/size/create', [SizeController::class, 'create'])->name('size.create');
+Route::post('/admin/size/store', [SizeController::class, 'store'])->name('size.store');
+Route::get('/admin/size/delete/{id}', [SizeController::class, 'destroy'])->name('size.delete');
 
+//color
+Route::get('/admin/color', [ColorController::class, 'index'])->name('color.index');
+Route::get('/admin/color/create', [ColorController::class, 'create'])->name('color.create');
+Route::post('/admin/color/store', [ColorController::class, 'store'])->name('color.store');
+Route::get('/admin/color/delete/{id}', [ColorController::class, 'destroy'])->name('color.delete');
 
 
 // shipping
@@ -187,8 +205,28 @@ Route::prefix('website')->name('websiteCart.')->group(function () {
 
 });
 
+Route::post('/apply-coupon', [shopingCartController::class, 'applyCoupon'])->name('apply.coupon');
+
+
 //order 
 Route::get('/checkout', [OrderController::class, 'index'])->name('checkout');
 Route::get('/order/show', [OrderController::class, 'show'])->name('order.show');
 Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
+
+
+// bkash payment
+
+    // Payment Routes for bKash
+    Route::get('/bkash/payment', [App\Http\Controllers\BkashTokenizePaymentController::class,'index']);
+    Route::get('/bkash/create-payment', [App\Http\Controllers\BkashTokenizePaymentController::class,'createPayment'])->name('bkash-create-payment');
+    Route::get('/bkash/callback', [App\Http\Controllers\BkashTokenizePaymentController::class,'callBack'])->name('bkash-callBack');
+
+    //search payment
+    Route::get('/bkash/search/{trxID}', [App\Http\Controllers\BkashTokenizePaymentController::class,'searchTnx'])->name('bkash-serach');
+
+    //refund payment routes
+    Route::get('/bkash/refund', [App\Http\Controllers\BkashTokenizePaymentController::class,'refund'])->name('bkash-refund');
+    Route::get('/bkash/refund/status', [App\Http\Controllers\BkashTokenizePaymentController::class,'refundStatus'])->name('bkash-refund-status');
+
+
 

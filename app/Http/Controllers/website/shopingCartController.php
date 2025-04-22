@@ -70,4 +70,52 @@ public function update(Request $request, $id)
 
 
 
+
+
+public function applyCoupon(Request $request)
+    {
+        // $request->validate([
+        //     'coupon_code' => 'required|string|exists:coupons,coupon_code'
+        // ]);
+
+        $coupon = Coupon::where('coupon_code', $request->coupon_code)
+                        ->where('expiry_date', '>=', now())
+                        ->where('status', 'active')
+                        ->first();
+
+        if (!$coupon) {
+            return response()->json(['error' => 'Invalid or expired coupon!'], 400);
+        }
+
+        $subtotal = Cart::getSubTotal();
+        $discount = 0;
+
+        if ($coupon->type == 'percentage') {
+            $discount = ($subtotal * $coupon->value) / 100;
+        } elseif ($coupon->type == 'fixed') {
+            $discount = $coupon->value;
+        }
+
+        $total = $subtotal - $discount;
+
+        session()->put('coupon', [
+            'code' => $coupon->coupon_code,
+            'discount' => $discount,
+            'total' => $total
+        ]);
+
+        return response()->json([
+            'message' => 'Coupon applied successfully!',
+            'discount' => number_format($discount, 2),
+            'total' => number_format($total, 2)
+        ]);
+    }
+
+
+
+
+
+
+
+
 }

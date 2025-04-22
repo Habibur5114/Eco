@@ -9,6 +9,7 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Favicons -->
   <link href="{{asset('BackEnd/assets/img/favicon.png')}}" rel="icon">
@@ -42,7 +43,9 @@
   <link href="{{asset('BackEnd/assets/css/style.css')}}" rel="stylesheet">
 
   <style>
-    .colored-toast.swal2-icon-success {
+  
+
+  .colored-toast.swal2-icon-success {
   background-color: #a5dc86 !important;
 }
 
@@ -73,7 +76,6 @@
 .colored-toast .swal2-html-container {
   color: white;
 }
-
   </style>
 
 </head>
@@ -138,21 +140,31 @@
 
 @if (session('success'))
 <script>
-Swal.fire({
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-right',
+  iconColor: 'white',
+  customClass: {
+    popup: 'colored-toast',
+  },
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+})
 
-    icon: "success",
-    text: "{{ session('success') }}",
-    timer: 1500
-  });
-</script>
-
-<script>
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+    Toast.fire({
+    icon: 'success',
+    title: "{{ session('success') }}",
+  })
 </script>
 
 @endif
+
+<script>
+  $(document).ready( function () {
+  $('#myTable').DataTable();
+} );
+</script>
 
 
 
