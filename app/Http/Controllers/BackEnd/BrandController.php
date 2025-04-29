@@ -88,4 +88,19 @@ class BrandController extends Controller
       return back()->with('success', ' Status changed successfully');
 
     }
+
+
+    public function view($id)
+    {
+        $data['brands'] = Brand:: find($id);
+        return view('BackEnd.brand.view',$data);
+    }
+
+
+    public function even($id)
+    {
+        $data['brands'] = Brand:: find($id);
+        return view('BackEnd.brand.even',$data);
+    }
+
 }

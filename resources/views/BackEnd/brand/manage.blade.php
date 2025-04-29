@@ -43,8 +43,10 @@
                         @endif
                       </td>
                       <td>
-                        <a href="{{route('brand.show',$brand->id)}}"class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                        <a href="{{route('brand.delete',$brand->id)}}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                        <a href="{{route('brand.view',$brand->id)}}"class="btn btn-success">view</a>
+                        <a href="{{route('brand.even',$brand->id)}}"class="btn btn-primary">Even</a>
+                        <a href="{{route('brand.show',$brand->id)}}"class="btn btn-warning">Edit</a>
+                        <a href="{{route('brand.delete',$brand->id)}}" class="btn btn-danger">Delete</a>
 
 
                       </td>

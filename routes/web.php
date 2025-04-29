@@ -21,6 +21,7 @@ use App\Http\Controllers\FontEnd\Fontendcontroller;
 use App\Http\Controllers\FontEnd\CartController;
 use App\Http\Controllers\website\WebsiteController;
 use App\Http\Controllers\website\ShopController;
+use App\Http\Controllers\BackEnd\EvenController;
 use App\Http\Controllers\website\shopingCartController;
 use App\Http\Middleware\admin;
 
@@ -93,7 +94,17 @@ Route::prefix('admin')->name('brand.')->group(function () {
     Route::get('/brand/show/{id}', [BrandController::class, 'show'])->name('show'); 
     Route::get('/brand/delete/{id}', [BrandController::class, 'delete'])->name('delete'); 
     Route::get('/brand/status/{id}', [BrandController::class, 'status'])->name('status'); 
+    Route::get('/brand/view/{id}', [BrandController::class, 'view'])->name('view'); 
+    Route::get('/brand/even/{id}', [BrandController::class, 'even'])->name('even'); 
 });
+
+
+Route::prefix('admin')->name('even.')->group(function () {
+   
+    Route::post('/even/store', [EvenController::class, 'store'])->name('store'); 
+    
+});
+
 
 //coupon
 
